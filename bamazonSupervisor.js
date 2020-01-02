@@ -28,9 +28,18 @@ connection.connect(function (err) {
 // connection.end();
 
 function salesByDepartment() {
-    connection.query(" SELECT A.department_id, A.department_name, A.over_head_costs, SUM(IFNULL(B.product_sales, 0)) as product_sales, " +
-        "   SUM(IFNULL(B.product_sales, 0)) - A.over_head_costs as total_profit FROM products B RIGHT JOIN departments A ON B.department_name = A.department_name " +
-        "GROUP BY A.department_id, A.department_name, A.over_head_costs", function (err, results) {
+    // Alias A = departments table and B = proucts table.
+    // Right join A and B on department_name.
+    // Take department_id, department_name, and over_head_costs from departments table.
+    // Sum up the product sales column from products table. If it's null return 0.
+    // Calculate total_profit by subtracting over_head_costs from the product sales sum.  If it's null return 0.
+    // Group it all by department_id, department_name, and over_head_costs
+    // Pass it to the npm console.table for proper display.
+    connection.query(" SELECT A.department_id, A.department_name, A.over_head_costs, " + 
+                        "SUM(IFNULL(B.product_sales, 0)) as product_sales, " +
+                        "SUM(IFNULL(B.product_sales, 0)) - A.over_head_costs as total_profit " +
+                        "FROM products B RIGHT JOIN departments A ON B.department_name = A.department_name " +
+                        "GROUP BY A.department_id, A.department_name, A.over_head_costs", function (err, results) {
             console.table(results);
             prompt();
         }
