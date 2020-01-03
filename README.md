@@ -5,7 +5,9 @@ Designed and Developed by: Kevin Brown
 
 # Project Overview
 ```
-Bamazon is an Amazon=like storefront created using node.js and MySQL. The app will take in orders from customers and deplete stock from the store's inventory. The app also tracks product sales across the store's departments and then provides a summary of the highest-grossing departments in the store.
+Bamazon is an Amazon-like storefront created using node.js and MySQL. The app will take in orders from customers 
+and deplete stock from the store's inventory. The app also tracks product sales across the store's departments 
+and then provides a summary of the highest-grossing departments in the store.
 
 ```
 ### Demo Recording Link: 
@@ -17,15 +19,15 @@ https://drive.google.com/file/d/1zrmQPSNTQCqva5Ja8REkh4PDA8xOcYSl/view
 ### Application Functionality
 ```
     bamazonCustomer.js:
-        - Initially displays a list of all available products and allows the customer to either scroll through the list
-          and select what they'd like to buy or enter the item at the prompt.
+        - Initially displays a list of all available products and allows the customer to either scroll through the 
+          list and select what they'd like to buy or enter the item at the prompt.
 
-        - Once the user selects an item the app prompts them for the quantity they'd like to buy. If the user enters a 
-          quantity that is more than the stock on hand the user is reprompted to enter a quantity up to the max quantity
-          available.
+        - Once the user selects an item the app prompts them for the quantity they'd like to buy. If the user 
+          enters a quantity that is more than the stock on hand the user is reprompted to enter a quantity up 
+          to the max quantity available.
 
-        - Once the application collects the item and quantity from the user the database is updated and the total cost of
-          their purchase is displayed.
+        - Once the application collects the item and quantity from the user the database is updated and the 
+          total cost of their purchase is displayed.
         
         
     bamazonManager.js:
