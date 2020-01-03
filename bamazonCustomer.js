@@ -24,8 +24,6 @@ connection.connect(function (err) {
     // console.log(`Connected to ${dbName}`);
 });
 
-// connection.end();
-
 function prompt() {
     connection.query("SELECT * FROM products", function (err, results) {
         if (err) throw err;
@@ -34,11 +32,11 @@ function prompt() {
             .prompt([
                 {
                     name: "choice",
-                    type: "rawlist",
+                    type: "list",
                     choices: function () {
                         var choiceArray = [];
                         for (var i = 0; i < results.length; i++) {
-                            choiceArray.push(`Product ID: ${results[i].id}, Item: ${results[i].product_name}, Price: ${results[i].price}`);
+                            choiceArray.push(`Product ID: ${results[i].id}, Item: ${results[i].product_name}, Price: ${results[i].price.toFixed(2)}`);
                         }
                         return choiceArray;
                     },
@@ -60,12 +58,12 @@ function prompt() {
             .then(function (answer) {
                 // get the information of the chosen item
                 var chosenItem;
-                console.log(`Answer =${answer.choice.split(",")[1]}`);
+                // console.log(`Answer =${answer.choice.split(",")[1]}`);
                 for (var i = 0; i < results.length; i++) {
-                    console.log(`Item = Item: ${results[i].product_name}`);
+                    // console.log(`Item = Item: ${results[i].product_name}`);
                     if ("Item: " + results[i].product_name === answer.choice.split(",")[1].trim()) {
                         chosenItem = results[i];
-                        console.log("ChosenItem = " + JSON.stringify(results[i]));
+                        // console.log("ChosenItem = " + JSON.stringify(results[i]));
                     }
                 }
 
@@ -99,11 +97,10 @@ function prompt() {
                                 ],
                                 function (error) {
                                     if (error) throw err;
-                                    console.log(`Updated product_sales for ${chosenItem.product_name}`);
+                                    // console.log(`Updated product_sales for ${chosenItem.product_name}`);
+                                    console.log(`\nPurchase Complete\nItem: ${chosenItem.product_name}, Quantity: ${answer.quantity}\nTotal Cost: ${formatter.format(total)}\n`);
                                 }
                             );
-
-                            console.log(`Total Cost: ${formatter.format(total)}`);
                             prompt();
                         }
                     );
@@ -118,6 +115,7 @@ function prompt() {
 }
 
 function start() {
+    process.stdout.write('\033c'); // Refresh the screen
     prompt();
 }
 

@@ -20,7 +20,7 @@ https://drive.google.com/file/d/1zrmQPSNTQCqva5Ja8REkh4PDA8xOcYSl/view
 ```
     bamazonCustomer.js:
         - Initially displays a list of all available products and allows the customer to either scroll through the 
-          list and select what they'd like to buy or enter the item at the prompt.
+          list and select what they'd like to buy.
 
         - Once the user selects an item the app prompts them for the quantity they'd like to buy. If the user 
           enters a quantity that is more than the stock on hand the user is reprompted to enter a quantity up 
@@ -44,6 +44,9 @@ https://drive.google.com/file/d/1zrmQPSNTQCqva5Ja8REkh4PDA8xOcYSl/view
             4. Add New Product
                 Allows the manager to add a completely new product to the store.
 
+            5. Exit
+            Exits the application.
+
     bamazonSupervisor.js:
         - Initially displays the following list of activities that the user can execute:
         1. View Product Sales by Department
@@ -55,7 +58,11 @@ https://drive.google.com/file/d/1zrmQPSNTQCqva5Ja8REkh4PDA8xOcYSl/view
                 e. total_profit: Product Sales after subtracting over head cost.
 
         2. Create New Department
-            Allows the supervisor to add a completely new department to the store.
+            Allows the supervisor to add a completely new department to the store. If the department 
+            already exists the user is notified and no new entry is created.
+
+        3. Exit
+            Exits the application.
 
 ```
 
@@ -97,7 +104,8 @@ Database Queries:
   - All queries to the database were implemented using the mysql node package.
 
 Display:
-  - Query results are formatted for display to the user using the console.table node package.
+  - Query results for the Supervisor report were formatted for display to the user using the 
+    console.table node package.
 
 Node Dependencies:
     - "console.table": "^0.10.0",
