@@ -107,8 +107,8 @@ function prompt() {
                 }
                 else {
                     // Not enough in stock, so apologize and start over
-                    console.log(`You can only order up to ${chosenItem.stock_quantity} ${chosenItem.product_name}`);
-                    this.prompt();
+                    console.log(`\nYou can only order up to ${chosenItem.stock_quantity} ${chosenItem.product_name}\n`);
+                    prompt();
                 }
             });
     });

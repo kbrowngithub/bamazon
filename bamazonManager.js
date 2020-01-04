@@ -48,7 +48,7 @@ function viewLowInventory() {
     });
 }
 
-function addToInventory() {
+function addToInventory(results) {
     inquirer
         .prompt([
             {
@@ -130,7 +130,8 @@ function addNewProduct() {
                 type: "input",
                 message: `Unit Price?`,
                 validate: function validateQty(value) {
-                    var pass = value.match(/^[0-9]+$/);
+                    // var pass = value.match(/^[0-9]+$/);
+                    var pass = value.match(/^\$?[0-9]+(\.[0-9][0-9])?$/);
                     if (pass) {
                         return true;
                     }
@@ -161,13 +162,11 @@ function addNewProduct() {
             //     }
             // }
             connection.query(
-                // "UPDATE products SET ? WHERE ?",
-                `INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (\"${answer.product.trim()}\",\"${answer.department.trim()}\",${currPrice},${answer.quantity})`,
-
+                `INSERT INTO products (product_name, department_name, price, stock_quantity) VALUES (\"${answer.product.trim()}\",\"${answer.department.trim()}\",${currPrice},${answer.quantity}); `, 
                 function (error) {
                     if (error) {
                         if (error.code === 'ER_DUP_ENTRY') {
-                            console.log(`\nDepartment \'${answer.product.trim()}\' already exists.\n`);
+                            console.log(`\nProduct \'${answer.product.trim()}\' already exists.\n`);
                             prompt();
                         } else {
                             throw error;
@@ -178,6 +177,7 @@ function addNewProduct() {
                     }
                 }
             );
+
         });
 }
 
@@ -207,7 +207,7 @@ function prompt() {
                         break;
 
                     case "Add to Inventory":
-                        addToInventory();
+                        addToInventory(results);
                         break;
 
                     case "Add New Product":

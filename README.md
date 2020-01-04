@@ -10,9 +10,13 @@ and deplete stock from the store's inventory. The app also tracks product sales 
 and then provides a summary of the highest-grossing departments in the store.
 
 ```
-### Demo Recording Link: 
+### Demo Recording Links: 
 
-https://drive.google.com/file/d/1zrmQPSNTQCqva5Ja8REkh4PDA8xOcYSl/view
+bamazonCustomer:  https://drive.google.com/file/d/1zeghP8bM8IfJiRDXjMi8xN9fzs6x34pk/view
+
+bamazonManager:  https://drive.google.com/file/d/13VxQt5hWuUvmO6Rrght_NGmLYY5p9ERl/view
+
+bamazonSupervisor:  https://drive.google.com/file/d/17-e3Aw9cBSyXRwcR7zhV7-YdyJsyi1wS/view
 
 # Organizational Overview
 
@@ -158,8 +162,8 @@ CREATE TABLE products (
     product_sales FLOAT DEFAULT 0
 );
 
--- Dummy Data, change the actual values to whatever you want. However, the department name 
-must match what is in the department table below --
+-- Dummy Data, change the actual values to whatever you want. However, the department name --
+-- must match what is in the department table below --
 INSERT INTO products (product_name, department_name, price, stock_quantity) 
 VALUES
 ("Sleeping Bag","Camping",129.99,39),
